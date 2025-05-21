@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chinese-English Translator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 Chinese-English Translator</h1>
+        <form method="post" action="/translate">
+            <div class="form-group">
+                <label for="text">Enter text:</label>
+                <textarea id="text" name="text" rows="6" required>{{ input_text or '' }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="direction">Translate:</label>
+                <select id="direction" name="direction">
+                    <option value="zh-en" {% if selected == "zh-en" %}selected{% endif %}>Chinese → English</option>
+                    <option value="en-zh" {% if selected == "en-zh" %}selected{% endif %}>English → Chinese</option>
+                </select>
+            </div>
+            <button type="submit">Translate</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>Translation:</h2>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
